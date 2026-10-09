@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard de Temperatura e Umidade</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <h1>Dashboard de Temperatura e Umidade</h1>
+
+  <div class="container">
+
+    <div class="caixa">
+      <h2>Temperatura e Umidade por Horário</h2>
+      <canvas id="graficoLinhas"></canvas>
+    </div>
+
+    <div class="caixa">
+      <h2>Médias Mensais</h2>
+      <canvas id="graficoBarras"></canvas>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctxLinhas = document.getElementById('graficoLinhas');
+
+    new Chart(ctxLinhas, {
+      type: 'line',
+      data: {
+        labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+        datasets: [
+          {
+            label: 'Temperatura (°C)',
+            data: [30, 29, 28, 25, 22, 23],
+            borderColor: 'red',
+            backgroundColor: 'red',
+            borderWidth: 2
+          },
+          {
+            label: 'Umidade (%)',
+            data: [80, 82, 80, 85, 80, 83],
+            borderColor: 'blue',
+            backgroundColor: 'blue',
+            borderWidth: 2
+          }
+        ]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+
+    const ctxBarras = document.getElementById('graficoBarras');
+
+    new Chart(ctxBarras, {
+      type: 'bar',
+      data: {
+        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+        datasets: [
+          {
+            label: 'Temperatura Média (°C)',
+            data: [22, 24, 27, 23, 20, 18],
+            backgroundColor: 'orange',
+            borderWidth: 1
+          },
+          {
+            label: 'Umidade Média (%)',
+            data: [90, 89, 93, 87, 88, 82],
+            backgroundColor: 'steelblue',
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+  </script>
+
+</body>
+
+</html>
